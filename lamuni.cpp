@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cmath>
+#include "mex.h"
+// #include "mexAdapter.hpp"
 using namespace std;
 
 // subfunctions
@@ -74,8 +76,9 @@ double dFdz(double z, double yf0, double yf, double c, double s, double A)
 }
 
 // main start
-int main() 
-{
+	void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray
+	*prhs[]) {
+
 	int R1[3], R2[3], i;
 	char comp[3] = {'x', 'y', 'z'};
 	double mu, dt;
@@ -211,5 +214,6 @@ int main()
             	printf("%lf \t",V2Minus[i]);
             }
 
-	return 0;
-}
+	// return 0;
+	}
+
