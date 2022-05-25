@@ -76,32 +76,18 @@ double dFdz(double z, double yf0, double yf, double c, double s, double A)
 }
 
 // main start
-	void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray
-	*prhs[]) {
+	void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
 
-	int R1[3], R2[3], i;
-	char comp[3] = {'x', 'y', 'z'};
-	double mu, dt;
+    double R1[3], R2[3], mu, dt;
+    R1[0] = mxGetScalar(prhs[0]);
+    R1[1] = mxGetScalar(prhs[1]);
+    R1[2] = mxGetScalar(prhs[2]);
+    R2[0] = mxGetScalar(prhs[3]);
+    R2[1] = mxGetScalar(prhs[4]);
+    R2[2] = mxGetScalar(prhs[5]);
+    mu = mxGetScalar(prhs[6]);
+    dt = mxGetScalar(prhs[7]);
 
-	// Requesting R1 and R2 components to fill arrays
-	for (i = 0; i < 3; i++)
-	{
-		cout << "Enter value for component " << comp[i] << " (R1): ";
-		cin >> R1[i];
-	}
-
-	for (i = 0; i < 3; i++)
-	{
-		cout << "Enter value for component " << comp[i] << " (R2): ";
-		cin >> R2[i];
-	}
-	
-	// Requesting body mu and dt
-	cout << "Enter value for mu: ";
-	cin >> mu;
-	cout << "Enter value for dt: ";
-	cin >> dt;
-	
 	double r1, r2;
 	double sum;
 
@@ -195,25 +181,25 @@ double dFdz(double z, double yf0, double yf, double c, double s, double A)
     double V1Plus[3];
     double V2Minus[3];
 
-    for (i = 0; i <= 2; i++)
+    for (int i = 0; i <= 2; i++)
     {
     	V1Plus[i] = 1 / g * (R2[i] - f * R1[i]);
     	V2Minus[i] = 1 / g * (gdot * R2[i] - R1[i]);
     }
 
     printf("V1Plus: \n");
-    for (i = 0; i <= 2; i++)
+    for (int i = 0; i <= 2; i++)
         {
         	printf("%lf \t",V1Plus[i]);
         }
     printf("\n\n");
 
     printf("V2Minus: \n");
-    for (i = 0; i <= 2; i++)
+    for (int i = 0; i <= 2; i++)
             {
             	printf("%lf \t",V2Minus[i]);
             }
-
+    printf("\n\n");
 	// return 0;
 	}
 
